@@ -1,0 +1,65 @@
+<template>
+    <lightning-card>
+        <div class="slds-p-around_small">
+            <div class="slds-grid slds-wrap">
+                <table class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered">
+                    <thead class="slds-assistive-text">
+                        <tr class="slds-line-height_reset">
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Course Name">Course Name</div>
+                            </th>
+
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Course Details">Course Details</div>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <template for:each={trainingList} for:item="trainingRecord">
+                            <tr key={trainingRecord.Id} class="slds-hint-parent">
+                                <td data-label="Account Name" style="height: 50%">
+                                    <lightning-formatted-rich-text
+                                        class="image"
+                                        value={trainingRecord.Course_Image__c}
+                                    ></lightning-formatted-rich-text>
+                                </td>
+
+                                <td data-label="Training Name">
+                                    <div
+                                        class="slds-truncate"
+                                        title={trainingRecord.Course_Name__c}
+                                        style="color: rgb(208, 11, 11); font-weight: bold; font-size: medium"
+                                    >
+                                        <span style="color: green; font-weight: bold; font-size: large">Course Name: </span
+                                        >{trainingRecord.Course_Name__c}
+                                    </div>
+
+                                    <lightning-badge label={trainingRecord.Course_Type__c}></lightning-badge>
+
+                                    <lightning-badge label={trainingRecord.Applicable_for__c}></lightning-badge>
+
+                                    <lightning-badge label={trainingRecord.Course_Source__c}></lightning-badge>
+
+                                    <br />
+                                </td>
+
+                                <td>
+                                    <lightning-button
+                                        variant="success"
+                                        name={trainingRecord.Course_link__c}
+                                        label="Start Learning"
+                                        title="Success"
+                                        onclick={buttonHandler}
+                                    ></lightning-button>
+                                </td>
+                            </tr>
+                            <!-- </div> -->
+                        </template>
+                        <!-- </aura:iteration> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </lightning-card>
+</template>
